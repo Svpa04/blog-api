@@ -3,7 +3,7 @@ from rest_framework import permissions
 
 class IsAuthorOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        # Read permissions are allowed to any request
+        # authenticated users only can see the posts
         if request.user.is_authenticated:
             return True
         return False
