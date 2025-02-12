@@ -37,11 +37,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts', # local
-    'rest_framework', # 3rd party
-    'corsheaders', # 3rd party
-    'rest_framework.authtoken', # 3rd party
-    'dj_rest_auth', # 3rd party
+    'django.contrib.sites', # new
+    # local apps
+    'posts', 
+    # 3rd party
+    'rest_framework',
+    'corsheaders', 
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration', #new
+    'allauth', #new
+    'allauth.account', #new
+    'allauth.socialaccount', #new
 ]
 
 
@@ -58,12 +65,13 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware', #new
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware', #new
 
 ]
 
@@ -87,10 +95,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request', #new
             ],
         },
     },
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SITE_ID = 1 #new
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
