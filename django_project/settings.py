@@ -45,10 +45,11 @@ INSTALLED_APPS = [
     'corsheaders', 
     'rest_framework.authtoken',
     'dj_rest_auth',
-    'dj_rest_auth.registration', #new
-    'allauth', #new
-    'allauth.account', #new
-    'allauth.socialaccount', #new
+    'dj_rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'drf_spectacular', #new
 ]
 
 
@@ -59,7 +60,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+
 }
 
 MIDDLEWARE = [
@@ -159,3 +163,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Spectacular settings
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API",
+    "DESCRIPTION": "API for blog posts",
+    "VERSION": "0.0.1",
+    "server_include_schema": False,
+    "SCHEMA_PATH_PREFIX": "/api/v1/",
+}
