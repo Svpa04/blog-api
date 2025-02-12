@@ -40,13 +40,19 @@ INSTALLED_APPS = [
     'posts', # local
     'rest_framework', # 3rd party
     'corsheaders', # 3rd party
+    'rest_framework.authtoken', # 3rd party
+    'dj_rest_auth', # 3rd party
 ]
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
 }
 
 MIDDLEWARE = [
