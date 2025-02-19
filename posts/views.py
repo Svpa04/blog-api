@@ -5,7 +5,7 @@ from .permissions import IsAuthorOrReadOnly
 
 # Create your views here.
 class PostList(generics.ListCreateAPIView):
-    permission_classes = (IsAuthorOrReadOnly,) #new
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
